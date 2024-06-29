@@ -1,3 +1,5 @@
+const alfabetoPorPosicion = require('../greedy/alfabetoPorPosicion');
+
 function obtenerVecinos(cadena, texto) {
 
     return new Promise((resolve) => {
@@ -41,18 +43,17 @@ function obtenerVecinos(cadena, texto) {
         */
         //console.log(texto);
 
-        let alfabeto = ['a', 'b', 'c'];
+        //let alfabeto = ['a', 'b', 'c'];
+        let alfabeto = alfabetoPorPosicion(texto);
 
         for (let i = 0; i < cadena.length; i++) {
-            for (let caracter of alfabeto) {
+            for (let caracter of alfabeto.get(i)) {
                 if (caracter !== cadena[i]) {
                     let vecino = cadena.slice(0, i) + caracter + cadena.slice(i + 1);
-                    candidatos.push(vecino);
-
+                    candidatos.push({ cadena_vecina: vecino, caracter_cambiado: cadena[i], caracter_nuevo: caracter, posicion: i });
                 }
             }
         }
-
         resolve(candidatos);
     });
 }

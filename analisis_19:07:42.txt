@@ -1,0 +1,20 @@
+Iteración: 0
+Distancia Inicial: 525
+Distancia Obtenida: 510
+
+Iteración: 1
+Distancia Inicial: 516
+Distancia Obtenida: 508
+
+Iteración: 2
+Distancia Inicial: 523
+Distancia Obtenida: 504
+
+Iteración: 3
+Distancia Inicial: 513
+Distancia Obtenida: 498
+
+Iteración: 4
+Distancia Inicial: 512
+Distancia Obtenida: 506
+

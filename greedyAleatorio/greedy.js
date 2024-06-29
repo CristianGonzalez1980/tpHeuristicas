@@ -1,19 +1,10 @@
 const randomEntreMasRepetidos = require('./randomEntreMasRepetidos');
+const alfabetoPorPosicion = require('../greedy/alfabetoPorPosicion');
 
 function masParecido(texto) {
 
-    let ocurrencias = new Map(); // Crea un mapa para las ocurrencias
-
-    for (let linea of texto) {
-        for (let i = 0; i < linea.length; i++) {
-            //console.log(i)
-            if (!ocurrencias.has(i)) {
-                ocurrencias.set(i, []);
-            }
-            ocurrencias.get(i).push(linea[i]);
-        }
-    }
-
+    let ocurrencias = alfabetoPorPosicion(texto); 
+    
     let solucion = new Array(texto[0].length).fill('');
 
     for (let oc of ocurrencias.keys()) {

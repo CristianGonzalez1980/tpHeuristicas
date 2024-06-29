@@ -3,8 +3,13 @@
 //const masParecido = require('./busquedaLocal/busquedaLocal');// 3.BUSQUEDALOCAL
 const masParecido = require('./grasp/grasp');// 5.GRASP
 const leerArchivo = require('./grasp/loadInstance');// 5.GRASP
+//const guardarResultado = require('./grasp/writeOutput');
+const salidaParaAnalisis = require('./grasp/salidaParaAnalisis')
+//const guardarResultado = require('./grasp/writeOutput');
 
-const filePath01 = './instancias/texto_mas_parecido_10_300_1.txt';  
+
+
+//const filePath01 = './instancias/texto_mas_parecido_10_300_1.txt';  
 //const filePath02 = './instancias/texto_mas_parecido_10_300_2.txt';  
 //const filePath03 = './instancias/texto_mas_parecido_10_300_3.txt';  
 //const filePath04 = './instancias/texto_mas_parecido_10_500_1.txt';  
@@ -30,24 +35,51 @@ const filePath01 = './instancias/texto_mas_parecido_10_300_1.txt';
 //const filePath24 = './instancias/texto_mas_parecido_20_500_3.txt';  
 //const filePath25 = './instancias/texto_mas_parecido_20_700_1.txt';  
 //const filePath26 = './instancias/texto_mas_parecido_20_700_2.txt';  
-//const filePath27 = './instancias/texto_mas_parecido_20_700_3.txt';
+const filePath27 = './instancias/texto_mas_parecido_20_700_3.txt';
 
 async function procesarArchivo(filePath) {
     try {
         const texto = await leerArchivo(filePath);
-        /*        texto.forEach((linea, index) => {
-                    console.log(`Línea ${index + 1}: ${linea}`);
-                });
+        const resultado = await masParecido(texto);
+        console.log(resultado.entries());
+
+        const datosIteraciones = new Map();
+
+        for (const [key, value] of resultado) {
+          const nuevoObjeto = {
+            iteracion: value.iteracion,
+            distancia_incial: value.distancia_incial,
+            distancia_obtenida: value.distancia_obtenida
+          };
+          datosIteraciones.set(key, nuevoObjeto);
+        }
+        
+        console.log(datosIteraciones);
+
+        await salidaParaAnalisis(filePath, datosIteraciones);
+
+        /*
+        //me quedo con el restultado de la mejor iteracion
+        let distanciaMinima = Infinity;
+        let cadenaResultante = ''
+
+        for (let [iter, res] of resultado.entries()) {
+            if (res.distancia_obtenida < distanciaMinima) {
+                distanciaMinima = res.distancia_obtenida;
+                cadenaResultante = res.cadena_resultante;
+            }
+        }
+
+        await guardarResultado(cadenaResultante, distanciaMinima)
         */
-        const resultado = masParecido(texto);
-        console.log(resultado);
+
         return texto;
         // Aquí puedes realizar otras operaciones con las líneas obtenidas
     } catch (error) {
         console.error(error);
     }
 }
- //GRASP
+//GRASP
 
 /*
 const texto = [
@@ -61,7 +93,7 @@ const texto = [
 */
 //const resultado = masParecido(texto); //para algoritmo greedy
 //const resultado = masParecido("abaca", texto); //para algoritmo de busqueda local
-procesarArchivo(filePath01, (error, textoProcesado) => { }); //para grasp
+procesarArchivo(filePath27, (error, textoProcesado) => { }); //para grasp
 //const resultado = masParecido(texto); //para grasp
 //console.log(resultado); //todos
 
