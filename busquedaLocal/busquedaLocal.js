@@ -4,17 +4,27 @@ const distanciaCadenaEnTexto = require('./distanciaCadenaEnTexto')
 async function busquedaLocal(cadena, texto) {
 
     let cadenaCandidata = cadena;
+    let distanciaParaImprimirActual = 0;
+    let distanciaParaImprimirCandidata = 0;
+    let cadenaActual; 
+
 
     do {
-        let cadena = cadenaCandidata;
-        cadenaCandidata = await busquedaVecindad(cadena, texto);
-        let distanciaParaImprimir = await distanciaCadenaEnTexto(cadenaCandidata, texto).distancia_maxima
-        console.log("Cadena candidata en busquedaLocal: " + cadenaCandidata+", Distancia actual: " + distanciaParaImprimir)
-    } while (await distanciaCadenaEnTexto(cadenaCandidata, texto).distancia_maxima > (await distanciaCadenaEnTexto(cadena, texto)).distancia_maxima && cadena != cadenaCandidata);
+        cadenaActual = cadenaCandidata;
+        cadenaCandidata = await busquedaVecindad(cadenaActual, texto);
+        let distanciaActual = await distanciaCadenaEnTexto(cadenaActual, texto)
+        let distanciaCandidata = await distanciaCadenaEnTexto(cadenaCandidata, texto)
+        distanciaParaImprimirActual = distanciaActual.distancia_maxima
+        distanciaParaImprimirCandidata = distanciaCandidata.distancia_maxima
 
-    
-    let distanciaImprimir = await distanciaCadenaEnTexto(cadenaCandidata, texto).distancia_maxima
-    console.log("salida busqueda Local: " + cadenaCandidata +", distancia minima: " + distanciaImprimir)
+        console.log("Cadena en busquedaLocal: " + cadenaActual + ", Distancia actual: " + distanciaParaImprimirActual)
+        console.log("Cadena candidata en busquedaLocal: " + cadenaCandidata + ", Distancia actual: " + distanciaParaImprimirCandidata)
+    } while (distanciaParaImprimirCandidata < distanciaParaImprimirActual && cadenaActual != cadenaCandidata);
+
+
+    let distanciaHallada = await distanciaCadenaEnTexto(cadenaCandidata, texto)
+    let distanciaImprimir = distanciaHallada.distancia_maxima
+    console.log("salida busqueda Local: " + cadenaCandidata + ", distancia minima: " + distanciaImprimir)
     return cadenaCandidata;
 }
 

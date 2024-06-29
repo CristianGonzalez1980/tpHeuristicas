@@ -1,0 +1,7 @@
+./instancias/texto_mas_parecido_20_700_3.txt
+Iteración	Distancia Inicial	Distancia Obtenida
+0	528	529
+1	516	516
+2	512	512
+3	519	520
+4	511	511

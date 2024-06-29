@@ -1,14 +1,28 @@
-function distanciaEntreVecinos(distancia_previa, caracter_previo, caracter_nuevo, posicion, cadena) {
+function distanciaEntreVecinos(distancias_por_linea, caracter_previo, caracter_nuevo, posicion, texto) {
 
-    const caracter_en_cadena = cadena[posicion];
+    let lineaPos = -1;
+    let distanciasPorLinea = distancias_por_linea;
+    let distanciaMaxima = 0;
 
-    if (caracter_en_cadena === caracter_previo) {
-        return distancia_previa + 1;
-    } else if (caracter_en_cadena === caracter_nuevo) {
-        return distancia_previa - 1;
-    } else {
-        return distancia_previa;
+    for (let linea of texto) {
+        lineaPos = +1;
+        const caracterEnCadena = linea[posicion];
+        let distanciaLinea = distanciasPorLinea.get(lineaPos);
+
+        if (caracterEnCadena === caracter_previo) {
+            distanciasPorLinea.set(lineaPos, distanciaLinea + 1);
+        } else if (caracterEnCadena === caracter_nuevo) {
+            distanciasPorLinea.set(lineaPos, distanciaLinea - 1);
+        }
+
+        distanciaLinea = distanciasPorLinea.get(lineaPos);
+
+        if (distanciaLinea > distanciaMaxima) {
+            distanciaMaxima = distanciaLinea;
+        }
     }
+
+    return { distancia_maxima: distanciaMaxima, distancias_por_linea: distanciasPorLinea }
 }
 
 module.exports = distanciaEntreVecinos;
