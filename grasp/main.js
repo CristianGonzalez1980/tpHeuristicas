@@ -3,6 +3,7 @@ const leerArchivo = require('./loadInstance');
 const guardarResultado = require('./writeOutput');
 
 //instancias
+//const filePath00 = '../instancias2/instancias texto mas parecido_az_10_10_3.txt';
 const filePath01 = '../instancias/texto_mas_parecido_10_300_1.txt';
 //const filePath02 = '../instancias/texto_mas_parecido_10_300_2.txt';  
 //const filePath03 = '../instancias/texto_mas_parecido_10_300_3.txt';  
