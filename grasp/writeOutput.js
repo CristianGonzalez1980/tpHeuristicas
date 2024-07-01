@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 function guardarResultado(cadena, distancia) {
 
     let conteo = new Date().toLocaleTimeString();;

@@ -11,7 +11,6 @@ function leerArchivo(filePath) {
 
             const lines = data.split('\n').filter(linea => linea.trim() !== '');
 
-            console.log('cantidad de lineas: ' + lines.length + ' caracteres por linea: ' + lines[0].length);
             resolve(lines);
         });
     });
