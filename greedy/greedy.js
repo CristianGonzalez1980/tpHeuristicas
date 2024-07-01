@@ -4,7 +4,6 @@ const alfabetoPorPosicion = require('./alfabetoPorPosicion')
 function masParecido(texto) {
 
     let ocurrencias = alfabetoPorPosicion(texto); 
-
     let solucion = new Array(texto[0].length).fill('');
 
     for (let oc of ocurrencias.keys()) {
@@ -14,6 +13,5 @@ function masParecido(texto) {
 
     return solucion.join('');
 }
-
 
 module.exports = masParecido;

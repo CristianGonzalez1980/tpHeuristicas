@@ -5,7 +5,6 @@ function alfabetoPorPosicion(texto) {
 
     for (let linea of texto) {
         for (let i = 0; i < linea.length; i++) {
-            //console.log(i)
             if (!ocurrencias.has(i)) {
                 ocurrencias.set(i, []);
             }

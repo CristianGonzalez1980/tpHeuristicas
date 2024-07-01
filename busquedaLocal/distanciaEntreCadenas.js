@@ -14,4 +14,5 @@ async function distanciaEntreCadenas(cadena1, cadena2) {
         return Promise.reject(error);
     }
 }
+
 module.exports = distanciaEntreCadenas;

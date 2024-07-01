@@ -13,9 +13,6 @@ async function busquedaVecindad(cadena, texto) {
         let caracterNuevo = registroVecino.caracter_nuevo;
         let posicionCambiada = registroVecino.posicion;
 
-        //function distanciaEntreVecinos(distancia_previa, caracter_previo, caracter_nuevo, posicion, cadena) {
-
-
         while (vecindad.length > 0 && (await distanciaCadenaEnTexto(cadenaCandidata, texto)).distancia_maxima >= distanciaCadena) {
             // Obtener y eliminar el primer elemento del conjunto
             registroVecino = vecindad.shift();
@@ -23,11 +20,9 @@ async function busquedaVecindad(cadena, texto) {
             caracterAnterior = registroVecino.caracter_cambiado;
             caracterNuevo = registroVecino.caracter_nuevo;
             posicionCambiada = registroVecino.posicion;
-            // console.log("Cadena candidata en vecindad:", cadenaCandidata);
         }
 
         if ((await distanciaCadenaEnTexto(cadenaCandidata, texto)).distancia_maxima < distanciaCadena) {
-            console.log("Nueva vecindad de: " + cadenaCandidata + "con distancia: " + (await distanciaCadenaEnTexto(cadenaCandidata, texto)).distancia_maxima)
             cadenaCandidata = await busquedaVecindad(cadenaCandidata, texto);
         } else {
             cadenaCandidata = cadena;
@@ -37,7 +32,7 @@ async function busquedaVecindad(cadena, texto) {
 
     } catch (error) {
         console.error("Error durante la búsqueda de vecindad:", error);
-        throw error; // O maneja el error de la manera que consideres apropiada
+        throw error;
     }
 }
 
