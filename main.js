@@ -18,13 +18,13 @@ const salidaParaAnalisis = require('./grasp/salidaParaAnalisis')
 //const filePath07 = './instancias/texto_mas_parecido_10_700_1.txt';  
 //const filePath08 = './instancias/texto_mas_parecido_10_700_2.txt';  
 //const filePath09 = './instancias/texto_mas_parecido_10_700_3.txt';  
-//const filePath10 = './instancias/texto_mas_parecido_15_300_1.txt';  
+//const filePath10 = './instancias/texto_mas_parecido_15_300_1.txt';
 //const filePath11 = './instancias/texto_mas_parecido_15_300_2.txt';  
 //const filePath12 = './instancias/texto_mas_parecido_15_300_3.txt';  
 //const filePath13 = './instancias/texto_mas_parecido_15_500_1.txt';  
 //const filePath14 = './instancias/texto_mas_parecido_15_500_2.txt';  
-//const filePath15 = './instancias/texto_mas_parecido_15_500_3.txt';  
-//const filePath16 = './instancias/texto_mas_parecido_15_700_1.txt';  
+//const filePath15 = './instancias/texto_mas_parecido_15_500_3.txt';  ultimo
+const filePath16 = './instancias/texto_mas_parecido_15_700_1.txt';  
 //const filePath17 = './instancias/texto_mas_parecido_15_700_2.txt';  
 //const filePath18 = './instancias/texto_mas_parecido_15_700_3.txt';  
 //const filePath19 = './instancias/texto_mas_parecido_20_300_1.txt';  
@@ -34,30 +34,33 @@ const salidaParaAnalisis = require('./grasp/salidaParaAnalisis')
 //const filePath23 = './instancias/texto_mas_parecido_20_500_2.txt';  
 //const filePath24 = './instancias/texto_mas_parecido_20_500_3.txt';  
 //const filePath25 = './instancias/texto_mas_parecido_20_700_1.txt';  
-//const filePath26 = './instancias/texto_mas_parecido_20_700_2.txt';  
-const filePath27 = './instancias/texto_mas_parecido_20_700_3.txt';
+//const filePath26 = './instancias/texto_mas_parecido_20_700_2.txt';
+//const filePath27 = './instancias/texto_mas_parecido_20_700_3.txt';
 
 async function procesarArchivo(filePath) {
+
     try {
-        const texto = await leerArchivo(filePath);
-        const resultado = await masParecido(texto);
-        console.log(resultado.entries());
+        for (let i = 0; i < 10; i++) {
+            const texto = await leerArchivo(filePath);
+            const incio = new Date().toLocaleTimeString();;
+            const resultado = await masParecido(texto);
+            console.log(resultado.entries());
 
-        const datosIteraciones = new Map();
+            const datosIteraciones = new Map();
 
-        for (const [key, value] of resultado) {
-          const nuevoObjeto = {
-            iteracion: value.iteracion,
-            distancia_incial: value.distancia_incial,
-            distancia_obtenida: value.distancia_obtenida
-          };
-          datosIteraciones.set(key, nuevoObjeto);
+            for (const [key, value] of resultado) {
+                const nuevoObjeto = {
+                    iteracion: value.iteracion,
+                    distancia_incial: value.distancia_incial,
+                    distancia_obtenida: value.distancia_obtenida
+                };
+                datosIteraciones.set(key, nuevoObjeto);
+            }
+
+            console.log(datosIteraciones);
+
+            await salidaParaAnalisis(filePath, datosIteraciones, incio);
         }
-        
-        console.log(datosIteraciones);
-
-        await salidaParaAnalisis(filePath, datosIteraciones);
-
         /*
         //me quedo con el restultado de la mejor iteracion
         let distanciaMinima = Infinity;
@@ -93,7 +96,9 @@ const texto = [
 */
 //const resultado = masParecido(texto); //para algoritmo greedy
 //const resultado = masParecido("abaca", texto); //para algoritmo de busqueda local
-procesarArchivo(filePath27, (error, textoProcesado) => { }); //para grasp
+//for (let i = 0; i < 10; i++) {
+procesarArchivo(filePath16, (error, textoProcesado) => { }); //para grasp
+//}
 //const resultado = masParecido(texto); //para grasp
 //console.log(resultado); //todos
 

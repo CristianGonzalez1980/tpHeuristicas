@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 
-function salidaParaAnalisis(titulo, datos) {
+function salidaParaAnalisis(titulo, datos, horacomienzo) {
 
     const headers = ['Iteración', 'Distancia Inicial', 'Distancia Obtenida'];
     // Crea el Map con los datos
@@ -27,14 +27,15 @@ function salidaParaAnalisis(titulo, datos) {
         dataRows.push(formatRow(row));
     });
 
-    const content = `${titulo}\n${headerRow}\n${dataRows.join('\n')}`;
+    let horafinalizacion = new Date().toLocaleTimeString();
 
-    let conteo = new Date().toLocaleTimeString();;
+    const content = `${titulo+'#'+horacomienzo+'#'+horafinalizacion}\n${headerRow}\n${dataRows.join('\n')}`;
+
     // Crea el contenido del archivo
     //const content = `${cadena}\n${distancia}`;
 
     // Escribe el contenido en un archivo
-    fs.writeFile('analisis_' + conteo + '.txt', content, (err) => {
+    fs.writeFile('#analisis_' + horafinalizacion + '.txt', content, (err) => {
         if (err) {
             console.error('Error al escribir en el archivo', err);
         } else {

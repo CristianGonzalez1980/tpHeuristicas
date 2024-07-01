@@ -5,7 +5,7 @@ const distanciaCadenaEnTexto = require('../busquedaLocal/distanciaCadenaEnTexto'
 async function masParecido(texto) {
 
     const infoRes = new Map()
-    const veces = 5; // Número de veces que quieres repetir el código
+    const veces = 100; // Número de veces que quieres repetir el código
 
     for (let i = 0; i < veces; i++) {
         // Bloque de código que quieres repetir
