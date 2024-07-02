@@ -10,7 +10,7 @@ function leerArchivo(filePath) {
             }
 
             const lines = data.split('\n').filter(linea => linea.trim() !== '');
-
+            console.log('Entrada leida satisfactoriamente');
             resolve(lines);
         });
     });
