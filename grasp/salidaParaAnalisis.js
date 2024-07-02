@@ -1,15 +1,25 @@
 const fs = require('fs');
 
 
-function salidaParaAnalisis(titulo, datos, horacomienzo) {
+function salidaParaAnalisis(/*titulo, */datos/*, horacomienzo*/) {
+
+    let titulo = '';
 
     const headers = ['Iteración', 'Distancia Inicial', 'Distancia Obtenida'];
     // Crea el Map con los datos
 
     const dataMap = new Map();
 
-    for (const [key, value] of datos) {
-        dataMap.set(key, [value.iteracion, value.distancia_incial, value.distancia_obtenida]);
+    for (const [key1, corrida] of datos.entries()) {
+        for (const [key2, value] of corrida.entries()) {
+            titulo += key1 + ' ' + value.inicio_iteracion + ' ' + value.final_iteracion;
+        }
+    }
+    //  for (let [caracter, conteo] of mapaDeCaracteres.entries()) {
+    for (const [key1, corrida] of datos.entries()) {
+        for (const [key, value] of corrida.entries()) {
+            dataMap.set(key1+' '+key, [value.iteracion, value.distancia_incial, value.distancia_obtenida]);
+        }
     }
 
     // Función para formatear una fila con tabulaciones
@@ -29,7 +39,7 @@ function salidaParaAnalisis(titulo, datos, horacomienzo) {
 
     let horafinalizacion = new Date().toLocaleTimeString();
 
-    const content = `${titulo+'#'+horacomienzo+'#'+horafinalizacion}\n${headerRow}\n${dataRows.join('\n')}`;
+    const content = `${titulo + '#' +/*horacomienzo+'#'+*/horafinalizacion}\n${headerRow}\n${dataRows.join('\n')}`;
 
     // Crea el contenido del archivo
     //const content = `${cadena}\n${distancia}`;
