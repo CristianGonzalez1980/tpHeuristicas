@@ -11,7 +11,7 @@ function obtenerVecinos(cadena, texto) {
             for (let caracter of alfabeto.get(i)) {
                 if (caracter !== cadena[i]) {
                     let vecino = cadena.slice(0, i) + caracter + cadena.slice(i + 1);
-                    candidatos.push({ cadena_vecina: vecino, caracter_cambiado: cadena[i], caracter_nuevo: caracter, posicion: i });
+                    candidatos.push(vecino);
                 }
             }
         }
