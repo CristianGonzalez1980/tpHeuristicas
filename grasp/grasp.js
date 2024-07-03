@@ -6,7 +6,7 @@ async function masParecido(texto) {
 
     const infoRes = new Map()
     const veces = 100;
-    console.log('Ejecutando algoritmo');
+    console.log('Ejecutando metaheuristica ...espere un momento');
     for (let i = 0; i < veces; i++) {
 
         let cadena = await masParecidoGreedy(texto);
